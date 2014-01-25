@@ -6,7 +6,8 @@ function getWeather() {
 	  var weatherUrl = 'http://api.openweathermap.org/data/2.5/weather?' +
 		  'lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
 	  ajax({ url: weatherUrl, type: 'json' }, function(data) {
-		simply.text({ title: data.name, subtitle: coords.latitude + ' - ' + coords.longitude});
+		var temp0 = 273.15;
+		simply.text({ title: data.name, subtitle: data.main.temp - temp0});
 	  });
 	});
 };
