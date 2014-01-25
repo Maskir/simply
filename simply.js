@@ -7,8 +7,11 @@ function getWeather() {
 		  'lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
 	  ajax({ url: weatherUrl, type: 'json' }, function(data) {
 		var temp0 = 273.15;
-		var t = data.main.temp - temp0;
-		simply.text({ title: data.name, subtitle: t.toFixed(1) + '\n' + data.weather.description});
+		var t = data.main.temp
+		if (t > 200) {
+			t = t - temp0;
+		};	
+		simply.text({ title: data.name, subtitle: t.toFixed(1) + '\n' + data.main.weather.description});
 	  });
 	});
 };
