@@ -8,3 +8,11 @@ navigator.geolocation.getCurrentPosition(function(pos){
     simply.text({ title: data.name, subtitle: data.main.temp });
   });
 });
+
+simply.on('singleClick', function(e) {
+  simply.subtitle('You pressed the ' + e.button + ' button!');
+});
+
+simply.on('longClick', function(e) {
+  simply.subtitle('You held the ' + e.button + ' button!');
+});
