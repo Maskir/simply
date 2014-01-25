@@ -13,7 +13,7 @@ function getWeather() {
 		if (t > 200) {t = t - temp0};	
 		if (tmin > 200) {tmin = tmin - temp0};	
 		if (tmax > 200) {tmax = tmax - temp0};	
-		simply.text({ title: data.name, subtitle: t.toFixed(1) + ' (' + tmin + '|' +tmax) + '\n' + data.main.weather});//(0).description});
+		simply.text({ title: data.name, subtitle: t.toFixed(1) + ' (' + tmin + '|' + tmax + ')' + '\n' + data.main.weather(1).description});
 	  });
 	});
 };
