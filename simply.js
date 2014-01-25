@@ -8,7 +8,7 @@ function getWeather() {
 	  ajax({ url: weatherUrl, type: 'json' }, function(data) {
 		var temp0 = 273.15;
 		var t = data.main.temp - temp0;
-		simply.text({ title: data.name, subtitle: t.toFixed(1)} + '\n' + data.weather.description);
+		simply.text({ title: data.name, subtitle: t.toFixed(1) + '\n' + data.weather.description);
 	  });
 	});
 };
