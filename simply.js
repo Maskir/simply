@@ -11,7 +11,7 @@ function getWeather() {
 		if (t > 200) {
 			t = t - temp0;
 		};	
-		simply.text({ title: data.name, subtitle: t.toFixed(1) + '\n' + data.main.weather.description});
+		simply.text({ title: data.name, subtitle: t.toFixed(1) + '\n' + data.main.weather['description']});
 	  });
 	});
 };
