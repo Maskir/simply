@@ -7,11 +7,13 @@ function getWeather() {
 		  'lat=' + coords.latitude + '&lon=' + coords.longitude + '&units=metric';
 	  ajax({ url: weatherUrl, type: 'json' }, function(data) {
 		var temp0 = 273.15;
-		var t = data.main.temp
-		if (t > 200) {
-			t = t - temp0;
-		};	
-		simply.text({ title: data.name, subtitle: t.toFixed(1) + '\n' + data.main.weather});//(0).description});
+		var t = data.main.temp;
+		var tmin = data.main.temp_min;
+		var tmax = data.main.temp_max;
+		if (t > 200) {t = t - temp0};	
+		if (tmin > 200) {tmin = tmin - temp0};	
+		if (tmax > 200) {tmax = tmax - temp0};	
+		simply.text({ title: data.name, subtitle: t.toFixed(1) + ' (' + tmin + '|' +tmax) + '\n' + data.main.weather});//(0).description});
 	  });
 	});
 };
