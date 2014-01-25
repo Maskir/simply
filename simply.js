@@ -1,4 +1,4 @@
-simply.title('Hello World!');
+simply.title('Hello World!', true);
 
 function getWeather() {
 	navigator.geolocation.getCurrentPosition(function(pos){
@@ -8,17 +8,30 @@ function getWeather() {
 	  ajax({ url: weatherUrl, type: 'json' }, function(data) {
 		var temp0 = 273.15;
 		var t = data.main.temp - temp0;
-		simply.text({ title: data.name, subtitle: t.toFixed(2)});
+		simply.text({ title: data.name, subtitle: t.toFixed(1)} + 'n/' + data.weather.description);
 	  });
+	});
+};
+
+function noti() {
+	Pebble.showSimpleNotificationOnPebble('Hello!',
+	  'Notifications from JavaScript? Welcome to the future!');
+};
+
+function accelTap() {
+	simply.on('accelTap', function(e) {
+	  simply.subtitle('You tapped across ' + (e.direction > 0 ? '+' : '-') + e.axis + '!');
 	});
 };
 
 simply.on('singleClick', function(e) {
   //simply.subtitle('You pressed the ' + e.button + ' button!');
-  if (e.button == 'up') {
+	if (e.button == 'up') {
 		getWeather();
-	} else {
-		simply.subtitle('Not working!');
+	} else if (e.button == 'select') {
+		noti();
+	} else if (e.button == 'down') {	
+		accelTap();
 	};
 });
 
